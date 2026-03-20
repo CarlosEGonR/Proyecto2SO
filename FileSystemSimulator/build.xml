@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="FileSystemSimulator" default="run" basedir=".">
+
+    <description>Simulador de Sistema de Archivos Concurrente — SO 2526-2</description>
+
+    <property name="src.dir"     value="src"/>
+    <property name="build.dir"   value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="dist.dir"    value="dist"/>
+    <property name="jar.name"    value="FileSystemSimulator.jar"/>
+    <property name="main.class"  value="Main"/>
+
+    <!-- ── Clean ─────────────────────────────────────── -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <!-- ── Init ──────────────────────────────────────── -->
+    <target name="init" depends="clean">
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <!-- ── Compile ───────────────────────────────────── -->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}"
+               destdir="${classes.dir}"
+               release="21"
+               encoding="UTF-8"
+               includeantruntime="false">
+            <compilerarg value="--enable-preview"/>
+        </javac>
+    </target>
+
+    <!-- ── JAR ───────────────────────────────────────── -->
+    <target name="jar" depends="compile">
+        <jar destfile="${dist.dir}/${jar.name}" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <!-- ── Run ───────────────────────────────────────── -->
+    <target name="run" depends="compile">
+        <java classname="${main.class}"
+              classpath="${classes.dir}"
+              fork="true"
+              failonerror="true">
+            <jvmarg value="--enable-preview"/>
+        </java>
+    </target>
+
+</project>
