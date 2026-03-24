@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.java.j2seproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-            <n>FileSystemSimulator</n>
+            <name>FileSystemSimulator</name>    <!-- ← antes era <n> -->
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>
