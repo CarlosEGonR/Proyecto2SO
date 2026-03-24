@@ -630,6 +630,7 @@ public class MainFrame extends JFrame {
             };
             ctrl.loadTestCase(fc.getSelectedFile().getAbsolutePath());
             ctrl.setSchedulingPolicy(p);
+            // Optionally, set scan direction combo to UP for SCAN/CSCAN (default)
             refreshAll();
             appendLog("🧪 Caso de prueba cargado: " + fc.getSelectedFile().getName());
         } catch (Exception ex) { error("Error: " + ex.getMessage()); }
